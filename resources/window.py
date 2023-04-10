@@ -1,4 +1,4 @@
-from customtkinter import *
+from customtkinter import set_appearance_mode, set_default_color_theme, CTk, CTkButton, CTkLabel, CTkEntry, CTkComboBox
 
 from customtkinter import END as konets
 # Appending root folder
@@ -9,7 +9,7 @@ from resources.algorithms import Unpacker, Coording, ScreenRes, ToDict
 
 # Main prefs
 set_appearance_mode("system")
-set_default_color_theme("green")
+set_default_color_theme("sweetkind")
 
 class MainApp(CTk):
     def __init__(self, width, height) -> None:
