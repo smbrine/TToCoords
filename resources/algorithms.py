@@ -29,6 +29,11 @@ class Coording():
         except:
             lat, long = f"Could not convert {self.location} to coordinates", None
         logwriter(f"[Coording] Successfully converted {self.location} to {[lat, long]}")
+        try:
+            lat = float(f"{lat:.6f}")
+            long = float(f"{long:.6f}")
+        except:
+            pass
         return [lat, long]
     
     def toStr(self, format: Optional[bool]=True) -> str: 
@@ -62,9 +67,6 @@ class ToDict():
     
 class Unpacker():
     def __init__(self, iterlist: list, logger: Optional[bool]=False, logdir: Optional[str]=None) -> None:
-        if iterlist == None:
-            raise ValueError("Error: target list is not specified")
-        
         if logger:
             if logdir != None:
                 logger_cfg(filename=logdir, level=BASIC)
