@@ -17,18 +17,25 @@ class Coording():
                 logwriter(f"[Coording] Requested logger at {logdir}")
                 logwriter(f'[Coording] Recieved {location} and {coords}')
             else:
-                raise AttributeError("You have activated logger, but no logdir specified. Please specify logdir. No default logdir is available at the moment")
+                raise AttributeError("You have activated logger, but no logdir specified. "+
+                                     "Please specify logdir. No default logdir is available at the moment")
         
         self.location = location
         self.coords = coords
         
     def toCoords(self) -> tuple:
-        lat, long = geoconv(location=self.location).latlng
+        try:
+            lat, long = geoconv(location=self.location).latlng
+        except:
+            lat, long = f"Could not convert {self.location} to coordinates", None
         logwriter(f"[Coording] Successfully converted {self.location} to {[lat, long]}")
         return [lat, long]
     
     def toStr(self, format: Optional[bool]=True) -> str: 
-        locname = geoconv(location=self.coords, method="reverse")
+        try:
+            locname = geoconv(location=self.coords, method="reverse")
+        except:
+            locname = f"Could not extract location from {self.coords}."
         logwriter(f'[Coording] Successfully converted {self.coords} to {locname}')
         if format:
             locname = str(locname[0]).replace("[", '').replace(']','')
@@ -47,7 +54,9 @@ class ToDict():
                 logger_cfg(filename=logdir, level=BASIC)
                 logwriter(f"[ToDict] Initialized logger at {logdir}")
             else:
-                raise AttributeError("You have activated logger, but no logdir specified. Please specify logdir. No default logdir is available at the moment")
+                raise AttributeError("You have activated logger, but no logdir specified. "+
+                                     "Please specify logdir. No default logdir is available at the moment")
+    
     def convert(self):
         pass
     
@@ -61,7 +70,8 @@ class Unpacker():
                 logger_cfg(filename=logdir, level=BASIC)
                 logwriter(f"[Unpacker] Initialized logger at {logdir}")
             else:
-                raise AttributeError("You have activated logger, but no logdir specified. Please specify logdir. No default logdir is available at the moment")
+                raise AttributeError("You have activated logger, but no logdir specified. "+
+                                     "Please specify logdir. No default logdir is available at the moment")
         
         self.packed = iterlist
         
