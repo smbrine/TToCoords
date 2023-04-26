@@ -1,1 +1,0 @@
-pyinstaller --clean --onefile --windowed --log-level TRACE --add-binary "resources:./" --hidden-import customtkinter --hidden-import pillow --hidden-import tkinter --hidden-import geocoder --hidden-import pyautogui --noconfirm launch.py > builder.log

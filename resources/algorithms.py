@@ -7,7 +7,8 @@ import pyautogui
 
 class Coording():
     
-    def __init__(self, location: Optional[str]=None, coords: Optional[tuple]=None, logger: Optional[bool]=False, logdir: Optional[str]=None) -> None:
+    def __init__(self, location: Optional[str]=None, coords: Optional[tuple]=None, 
+                 logger: Optional[bool]=False, logdir: Optional[str]="logs/Coording.log") -> None:
         if location == None and coords == None:
             raise ValueError("At least one argumet should be specified")
         if logger:
